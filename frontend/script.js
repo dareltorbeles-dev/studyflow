@@ -1968,6 +1968,8 @@ if (sidebar && sidebarToggle) {
 
 
 
+
+
 // Load settings when the page opens
 loadStudyFlowSettings();
 
@@ -1986,3 +1988,5 @@ renderCreatedQuestions();
 renderTasks();
 renderReviewers();
 updateStatistics();
+
+
