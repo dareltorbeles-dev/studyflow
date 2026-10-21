@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow | Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+   
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+        <h2 class="logo">StudyFlow</h2>
+
+        <button
+            type="button"
+            id="sidebarToggle"
+            class="sidebar-toggle"
+            aria-label="Collapse sidebar"
+            aria-expanded="true"
+            title="Collapse sidebar"
+        >
+            ☰
+        </button>
+    </div>
+
+    <nav>
+        <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-page="tasks">My Tasks</a>
+        <a href="#" class="nav-link" data-page="reviewers">Reviewer Library</a>
+        <a href="#" class="nav-link" data-page="quiz">Quiz Mode</a>
+        <a href="#" class="nav-link" data-page="settings">Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <p>Study smarter, not harder.</p>
+    </div>
+
+</aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Dashboard Page -->
+        <div id="dashboardPage">
+
+            <header class="topbar">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Manage your studies and stay on track.</p>
+                </div>
+
+                <div class="user-profile">
+                    <div class="avatar">S</div>
+                    <span>Student</span>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <h2>Welcome back, Student!</h2>
+                <p>Ready to make progress on your studies today?</p>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <h3>Total Tasks</h3>
+                    <p class="stat-number" id="totalTasks">0</p>
+                </article>
+
+                <article class="stat-card">
+                    <h3>Completed Tasks</h3>
+                    <p class="stat-number" id="completedTasks">0</p>
+                </article>
+
+                <article class="stat-card">
+                    <h3>Upcoming Deadlines</h3>
+                    <p class="stat-number" id="upcomingTasks">0</p>
+                </article>
+
+                <article class="stat-card">
+                    <h3>My Reviewers</h3>
+                    <p class="stat-number" id="totalReviewers">0</p>
+                </article>
+
+            </section>
+
+            <!-- Study Progress -->
+            <section class="progress-section">
+                <h2>Study Progress</h2>
+
+                <div class="progress-info">
+                    <span>Completed tasks</span>
+                    <span id="progressText">0%</span>
+                </div>
+
+                <div class="progress-track">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- My Tasks Page -->
+        <section class="tasks-section" id="tasksPage" hidden>
+
+            <div class="section-header">
+                <div>
+                    <h2>My Tasks</h2>
+                    <p>Keep track of your assignments.</p>
+                </div>
+
+                <button id="addTaskBtn" type="button">+ Add Task</button>
+            </div>
+
+            <form id="taskForm" class="task-form" hidden>
+
+                <h3>Add New Task</h3>
+
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle"
+                        placeholder="e.g. Finish SQL activity" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskSubject">Subject</label>
+                    <input type="text" id="taskSubject"
+                        placeholder="e.g. Database Management" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDueDate">Due Date</label>
+                    <input type="date" id="taskDueDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="saveTaskBtn">Save Task</button>
+                    <button type="button" id="cancelTaskBtn">Cancel</button>
+                </div>
+
+            </form>
+
+            <!-- Task Filters -->
+            <div class="task-filters">
+                <button type="button" class="filter-btn active" data-filter="all">All</button>
+                <button type="button" class="filter-btn" data-filter="pending">Pending</button>
+                <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+
+            <div id="taskList" class="task-list">
+                <p class="empty-state">No tasks yet. Add your first task!</p>
+            </div>
+
+        </section>
+
+        <!-- Reviewer Library Page -->
+        <section class="reviewers-section" id="reviewersSection" hidden>
+
+            <div class="section-header">
+                <div>
+                    <h2>Reviewer Library</h2>
+                    <p>Organize your study notes by subject.</p>
+                </div>
+
+                <button type="button" id="addReviewerBtn">+ Add Reviewer</button>
+            </div>
+
+            <div id="reviewerList" class="reviewer-list">
+                <p class="empty-state">No reviewers yet. Add your first reviewer!</p>
+            </div>
+
+        </section>
+
+    
+        <!-- Quiz Mode -->
+        <section id="quizPage" hidden>
+
+            <div class="section-header">
+                <div>
+                    <h2>Quiz Mode</h2>
+                    <p>Practice, review, and test your knowledge.</p>
+                </div>
+            </div>
+
+            <!-- Quiz Home -->
+            <div class="quiz-home" id="quizHome">
+
+                <div class="quiz-intro">
+                    <h3>Ready to Study?</h3>
+                    <p>
+                        Create your own questions or prepare a quiz
+                        using your Reviewer Library.
+                    </p>
+                </div>
+
+                <!-- Quiz Options -->
+                <div class="quiz-options">
+
+                    <article class="quiz-option-card">
+                        <h3>Manual Quiz</h3>
+                        <p>
+                            Create your own multiple-choice
+                            and identification questions.
+                        </p>
+                        <button type="button" id="manualQuizBtn">
+                            Create Manual Quiz
+                        </button>
+                    </article>
+
+                    <article class="quiz-option-card">
+                        <h3>Reviewer Quiz</h3>
+                        <p>
+                            Prepare a quiz based on your uploaded
+                            study reviewers.
+                        </p>
+                        <button type="button" id="reviewerQuizBtn">
+                            Use Reviewer Library
+                        </button>
+                    </article>
+
+                    <article class="quiz-option-card">
+                        <h3>Quiz History</h3>
+                        <p>
+                            Review your previous scores
+                            and quiz attempts.
+                        </p>
+                        <button type="button" id="quizHistoryBtn">
+                            View History
+                        </button>
+                    </article>
+
+                </div>
+
+            </div>
+
+            <!-- Quiz Workspace -->
+            
+<div id="quizWorkspace" hidden>
+  <div class="section-header">
+    <div>
+      <h2 id="quizWorkspaceTitle">Create Manual Quiz</h2>
+      <p id="quizWorkspaceDescription">Build your own practice questions.</p>
+    </div>
+  </div>
+
+  <div class="quiz-option-card quiz-builder">
+    <label for="quizTitleInput">Quiz Title</label>
+    <input
+      type="text"
+      id="quizTitleInput"
+      placeholder="e.g. Introduction to Computing"
+    />
+
+    <label for="questionTypeSelect">Question Type</label>
+    <select id="questionTypeSelect">
+    <option value="multiple-choice">Multiple Choice</option>
+    <option value="identification">Identification</option>
+    <option value="modified-true-false">Modified True or False</option>
+    <option value="fill-blanks">Fill in the Blanks</option>
+    </select>
+
+    <label for="questionTextInput">Question</label>
+    <textarea
+      id="questionTextInput"
+      rows="3"
+      placeholder="Enter your question here..."
+    ></textarea>
+
+    <div id="choicesContainer" hidden>
+      <label for="choiceA">Choice A</label>
+      <input type="text" id="choiceA" placeholder="Enter choice A" />
+
+      <label for="choiceB">Choice B</label>
+      <input type="text" id="choiceB" placeholder="Enter choice B" />
+
+      <label for="choiceC">Choice C</label>
+      <input type="text" id="choiceC" placeholder="Enter choice C" />
+
+      <label for="choiceD">Choice D</label>
+      <input type="text" id="choiceD" placeholder="Enter choice D" />
+    </div>
+
+    <label for="correctAnswerInput">Correct Answer</label>
+    <input
+      type="text"
+      id="correctAnswerInput"
+      placeholder="Enter the correct answer"
+    />
+
+    <button type="button" id="addQuestionBtn">Add Question</button>
+
+    <div class="quiz-question-list">
+      <h3>Questions Added</h3>
+      <p id="questionCount">No questions added yet.</p>
+      <div id="createdQuestionsList"></div>
+    </div>
+
+    <div class="quiz-builder-actions">
+      <button type="button" id="saveQuizBtn">Save Quiz</button>
+      <button type="button" id="cancelQuizBtn">Back to Quiz Mode</button>
+    </div>
+  </div>
+</div>
+
+
+            <!-- Quiz Results -->
+            <div id="quizResults" hidden>
+                <!-- Score and retry controls will be added later. -->
+            </div>
+
+            <!-- Quiz History -->
+            <div id="quizHistory" hidden>
+                <!-- Previous quiz attempts will be displayed here. -->
+            </div>
+
+        </section>
+
+
+        
+<!-- Settings -->
+<section id="settingsPage" hidden class="settings-section">
+
+    <div class="section-header">
+        <div>
+            <h2>Settings</h2>
+            <p>Customize your StudyFlow experience.</p>
+        </div>
+    </div>
+
+    <!-- Profile Settings -->
+    <div class="settings-card">
+        <h3>Profile</h3>
+        <p>Manage your student information.</p>
+
+        <div class="form-group">
+            <label for="studentNameInput">Student Name</label>
+            <input
+                type="text"
+                id="studentNameInput"
+                placeholder="Enter your name"
+                maxlength="50"
+            >
+        </div>
+
+        <button type="button" id="saveProfileBtn">
+            Save Profile
+        </button>
+    </div>
+
+    <!-- Appearance Settings -->
+    <div class="settings-card">
+        <h3>Appearance</h3>
+        <p>Choose how StudyFlow looks on your device.</p>
+
+        <div class="form-group">
+            <label for="themeSelect">Theme</label>
+            <select id="themeSelect">
+                <option value="light">Light Mode</option>
+                <option value="dark">Dark Mode</option>
+            </select>
+        </div>
+
+        <button type="button" id="saveAppearanceBtn">
+            Save Appearance
+        </button>
+    </div>
+
+    <p id="settingsMessage" role="status" aria-live="polite"></p>
+
+</section>
+
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
